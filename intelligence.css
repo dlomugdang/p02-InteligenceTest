@@ -1,0 +1,19 @@
+/* Lewis Lomugdang */
+body{
+  background-color: LightCyan;
+}
+
+h1{
+  font-family: "Times New Roman", Georgia, Serif;
+  font-size: 40px;
+}
+
+p{
+  text-align: left;
+  font-family: "Verdana", Arial, sans-serif;
+  font-size: 20px;
+}
+
+label{
+  font-size: 20px;
+}
