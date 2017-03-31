@@ -3,11 +3,6 @@ function solutionOne(x,y){
   return (x-y).toString() + (x+y).toString() + (x*y).toString();
 }
 
-/*function problemOne(){
-  var valEnter = document.getElementById("userNum").value;
-  alert(valEnter);
-}*/
-
 function validate(){
   var num = document.getElementById("userNum").value;
   if(num == solutionOne(24, 7)){
@@ -27,10 +22,6 @@ function solutionTwo(string){
   return sentence.toString();
 }
 
-function problemTwo(){
-  var valEnter = document.getElementById("userNum").value;
-  alert(valEnter);
-}
 function validate2(){
   var sentence = document.getElementById("userNum").value;
   if(sentence == "100 cents in a dollar"){
@@ -62,7 +53,55 @@ function validate3(){
     document.getElementById("userError").classList.add("shown-message");
     document.getElementById("userVal").classList.add("has-error");
     document.getElementById("userVal").classList.remove("has-success")
+
+  }
+  window.location.href = "result.html";
+}
+
+var counter = 0;
+
+function addCount(){
+  var newCount;
+  newCount = document.getElementById("userNum").value;
+  if(isNaN(newCount)){
+    alert("Enter answer");
+  }
+  else{
+    newCount = Number(newCount);
+    counter += newCount;
+
+    setCookie("res", counter, 0);
   }
 }
 
-//window.location.href = "result.html";
+function resultPage(){
+  var resultCount;
+  resultCount = getCookie("res");
+  resultCount = Number(resultCount);
+
+  document.getElementById("ans").innerHTML = resultCount;
+}
+
+//courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+//courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
