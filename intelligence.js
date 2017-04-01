@@ -5,17 +5,21 @@ function solutionOne(x,y){
 
 function validate(){
   var num = document.getElementById("userNum").value;
+  var score = 0;
   if(num == solutionOne(24, 7)){
     document.getElementById("userVal").classList.add("has-success");
     document.getElementById("userVal").classList.remove("has-error");
+    score++;
   }
   else{
     document.getElementById("userError").innerHTML="The answer must be a number!";
     document.getElementById("userError").classList.remove("hidden-message");
     document.getElementById("userError").classList.add("shown-message");
     document.getElementById("userVal").classList.add("has-error");
-    document.getElementById("userVal").classList.remove("has-success")
+    document.getElementById("userVal").classList.remove("has-success");
+    score = 0;
   }
+  setCookie("question1", Number(score));
 }
 
 function solutionTwo(string){
@@ -24,17 +28,21 @@ function solutionTwo(string){
 
 function validate2(){
   var sentence = document.getElementById("userNum").value;
+  score = 0;
   if(sentence == "100 cents in a dollar"){
     document.getElementById("userVal").classList.add("has-success");
     document.getElementById("userVal").classList.remove("has-error");
+    score++;
   }
   else{
     document.getElementById("userError").innerHTML="The answer must be a sentence!";
     document.getElementById("userError").classList.remove("hidden-message");
     document.getElementById("userError").classList.add("shown-message");
     document.getElementById("userVal").classList.add("has-error");
-    document.getElementById("userVal").classList.remove("has-success")
+    document.getElementById("userVal").classList.remove("has-success");
+    score = 0;
   }
+  setCookie("question2", Number(score));
 }
 
 function solutionThree(string){
@@ -43,43 +51,33 @@ function solutionThree(string){
 
 function validate3(){
   var bin = document.getElementById("userNum").value;
+  score = 0;
   if(bin == "01010110 01001101"){
     document.getElementById("userVal").classList.add("has-success");
     document.getElementById("userVal").classList.remove("has-error");
+    score++;
   }
   else{
     document.getElementById("userError").innerHTML="The answer must be in binary!";
     document.getElementById("userError").classList.remove("hidden-message");
     document.getElementById("userError").classList.add("shown-message");
     document.getElementById("userVal").classList.add("has-error");
-    document.getElementById("userVal").classList.remove("has-success")
+    document.getElementById("userVal").classList.remove("has-success");
+    score = 0;
 
   }
-  window.location.href = "result.html";
+  setCookie("question3", Number(score));
 }
 
 var counter = 0;
 
-function addCount(){
-  var newCount;
-  newCount = document.getElementById("userNum").value;
-  if(isNaN(newCount)){
-    alert("Enter answer");
-  }
-  else{
-    newCount = Number(newCount);
-    counter += newCount;
-
-    setCookie("res", counter, 0);
-  }
-}
-
 function resultPage(){
   var resultCount;
-  resultCount = getCookie("res");
-  resultCount = Number(resultCount);
+  resultCount = Number(getCookie("question1")) + Number(getCookie("question2")) + Number(getCookie("question3"));
+  var resultTotal = Number(resultCount)/3;
+  var percent = resultTotal*100;
 
-  document.getElementById("ans").innerHTML = resultCount;
+  document.getElementById("ans").innerHTML = Number(percent.toFixed(2)) + "%";
 }
 
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
